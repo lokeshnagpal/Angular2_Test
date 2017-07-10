@@ -1,0 +1,202 @@
+<div>
+
+   <table>
+      <tr>
+         <td>
+             <table class="table table-bordered table-striped" id="basetable">
+
+        <tbody>
+
+            <tr>
+
+                <td>
+
+                    <label for="cid">Customer id</label>
+
+                </td>
+
+                <td>
+
+                    <input type="text" class="form-control" [(ngModel)]= "customer.custId" name="cid">
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>
+
+                    <label for="cname">Customer Name</label>
+
+                </td>
+
+                <td>
+
+                    <input type="text" class="form-control" [(ngModel)]= "customer.custName">
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>
+
+                    <label for="caddress">Customer Address</label>
+
+                </td>
+
+                <td>
+
+                    <input type="text" class="form-control" [(ngModel)]= "customer.address">
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>
+
+                    <label for="occupation">Occupation</label>
+
+                </td>
+
+                <td>
+
+                    <!--<input type="text" class="form-control" [(ngModel)]= "customer.occupation">-->
+                    <select [(ngModel)]= "customer.occupation" class="form-control">
+                        <option *ngFor="let occ of occupations">{{occ}}</option>
+                    </select>
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>
+
+                    <label for="city">City</label>
+
+                </td>
+
+                <td>
+
+                    <input type="text" class="form-control" [(ngModel)]= "customer.city">
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>
+
+                    <label for="state">State</label>
+
+                </td>
+
+                <td>
+
+                    <input type="text" class="form-control" [(ngModel)]= "customer.state">
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>
+
+                    <input name="new" id="btnnew" class="btn btn-primary" type="button" (click)="clear()" value = "clear" >
+
+                </td>
+
+                <td>
+                     
+                     <div *ngIf="flag">                     
+                      <input name="save" id="btnsave" class="btn btn-success" type="button"  (click)="save()"   value="save">
+                    </div>
+
+                     <div *ngIf="!flag" >
+                         <input name="save" id="btnupdate" class="btn btn-success" type="button"  (click)="save()"   value="update">
+                     </div>
+                </td>
+
+            </tr>
+
+            
+
+        </tbody>
+
+
+
+    </table>
+         </td>
+           
+        <td>
+          <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown" rbDropdown>
+                <a
+                    class="dropdown-toggle"
+                    role="button"
+                    aria-haspopup="true"
+                    aria-expanded="false">Customer <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a (click)="onStore()" style="cursor: pointer;">Name</a></li>
+                    <li><a (click)="onFetch()" style="cursor: pointer;">Retrieve Recipes</a></li>
+                </ul>
+                    
+                    
+                </li>
+           </ul>
+        </td>
+
+         <td>
+             <table class="table table-bordered">
+
+                    <thead>
+
+                        <tr>
+                            <th><input type="checkbox" (click)="checkAll()" [(ngModel)]= "selectAll" >{{selectAll}}</th>
+                            <th>Cust ID</th>
+
+                            <th>Cust Name</th>
+
+                            <th>Address</th>
+
+                            <th>Occupation</th>
+
+                            <th>City</th>
+                            <th>State</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let cust of customers" (click)="getSelected(cust)" >
+                            <td><input type="checkbox" [ngModel]="selected"></td>
+                            <td>{{cust.custId}}</td>
+                            <td>{{cust.custName}}</td>
+                            <td>{{cust.address}} </td>
+                            <td>{{cust.occupation}}</td>
+                            <td>{{cust.city}}</td>
+                            <td>{{cust.state}}</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+         </td>
+
+      </tr>
+
+   </table>
+
+
+
+    
+
+</div>
